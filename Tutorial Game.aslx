@@ -1,0 +1,547 @@
+<!--Saved by Quest 5.7.6404.15496-->
+<asl version="550">
+  <include ref="Portugues.aslx" />
+  <include ref="Core.aslx" />
+  <game name="Tutorial Game">
+    <gameid>da8bd5c3-5d83-40f3-882c-5613f6a86b78</gameid>
+    <version>1.0</version>
+    <firstpublished>2017</firstpublished>
+    <feature_asktell />
+    <author>Gabriel Victor</author>
+    <statusattributes type="stringdictionary" />
+  </game>
+  <object name="sala">
+    <inherit name="editor_room" />
+    <description type="script">
+      descricao room ("Uma sala muito bem decorada, há vários quadros famosos nas paredes.")
+    </description>
+    <enter type="script">
+    </enter>
+    <object name="player">
+      <inherit name="editor_object" />
+      <inherit name="editor_player" />
+      <statusattributes type="stringdictionary">
+        <item>
+          <key>score</key>
+          <value>Score: !/10 </value>
+        </item>
+      </statusattributes>
+      <score type="int">0</score>
+    </object>
+    <object name="TV">
+      <inherit name="editor_object" />
+      <inherit name="switchable" />
+      <inherit name="feminine" />
+      <alt type="stringlist">
+        <value>televisão</value>
+      </alt>
+      <feature_switchable />
+      <switchonmsg>Kinsgman está passando, amo este filme porém preciso fazer outras coisas.</switchonmsg>
+      <switchoffmsg>A TV está desligada agora.</switchoffmsg>
+      <switchedon />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>uma </prefix>
+      <peso type="double">14</peso>
+      <suffix>enorme</suffix>
+      <look type="script">
+        picture ("tv5.png")
+        muda fonte ("Uma TV bastante antiga, ainda daquelas de tubo.")
+      </look>
+      <assistir type="script">
+        if (IsSwitchedOn(TV)) {
+          msg ("Você assiste por alguns minutos, filmes de agentes especias realmente te encanta.")
+        }
+        else {
+          msg ("Bom não passa nada, por que será? .. Ops, tenho que ligá-la primeiro HEHEHE.")
+        }
+      </assistir>
+    </object>
+    <object name="sofá">
+      <inherit name="editor_object" />
+      <sit>Apesar da aparência um pouco velha, o sofá está bastante macio e confortável.</sit>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>um</prefix>
+      <alt type="stringlist">
+        <value>sofa</value>
+      </alt>
+      <peso type="double">22.75</peso>
+      <medida>Kg</medida>
+      <look type="script">
+        picture ("Sofa-Transparent.png")
+        muda fonte ("Um belo sofá do século XVIII, seu estofado permanece intocável.")
+      </look>
+    </object>
+    <object name="mesa">
+      <inherit name="editor_object" />
+      <inherit name="surface" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>uma</prefix>
+      <feature_container />
+      <listchildren type="boolean">false</listchildren>
+      <hidechildren type="boolean">false</hidechildren>
+      <look type="script">
+        picture ("MESA-DE-CENTRO-RED.-TUBULAR-ALTA-8MM-VIDRO-ALUMINIO-400x600.png")
+        muda fonte ("Mesa de vidro redonda, uma daquelas mesas pequenas para decoração.")
+      </look>
+      <object name="jornal">
+        <inherit name="editor_object" />
+        <ler>Meu inglês não é tão bom assim...</ler>
+        <take />
+        <takemsg>Você dobra-o em dois e coloca na sua mochila.</takemsg>
+        <dropmsg>Você joga-o no chão.</dropmsg>
+        <attr name="feature_switchable" type="boolean">false</attr>
+        <switchedondesc>Está ligado no canal 20.</switchedondesc>
+        <switchedoffdesc>Está desligado.</switchedoffdesc>
+        <switchedon />
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <prefix>um </prefix>
+        <look type="script">
+          picture ("Newspaper-PNG-Clipart.png")
+          muda fonte ("O quê a edição de ontem do New York Times está fazendo aqui?")
+        </look>
+      </object>
+    </object>
+    <object name="quadro">
+      <inherit name="editor_object" />
+      <scenery />
+      <alt type="stringlist">
+        <value>pintura</value>
+      </alt>
+      <peso type="double">1.5</peso>
+      <medida>Kg</medida>
+      <possessive>esse</possessive>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <look type="script">
+        picture ("66f8afc422fe4941a9fff044ccfecaef.jpg")
+        muda fonte ("Um belo quadro pintado a óleo.")
+      </look>
+    </object>
+    <object name="lâmpada">
+      <inherit name="editor_object" />
+      <inherit name="switchable" />
+      <inherit name="feminine" />
+      <feature_switchable />
+      <switchedon />
+      <switchonmsg>A lâmpada está ligada, aliás nunca vi uma luz tão forte.</switchonmsg>
+      <switchoffmsg>A lâmpada está desligada, está um pouco escuro porém mesmo assim consigo enxergar.</switchoffmsg>
+      <destruir>Acho que não é uma boa idéia...</destruir>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <switchedondesc>Que luz intensa.</switchedondesc>
+      <switchedoffdesc>Está desligada.</switchedoffdesc>
+      <prefix>uma antiga</prefix>
+      <alt type="stringlist">
+        <value>lampada</value>
+        <value>luz</value>
+      </alt>
+      <peso type="double">400</peso>
+      <medida>g</medida>
+      <takemsg>Sem ela não terei como enxergar muito bem, melhor deixá-la onde está.</takemsg>
+      <drop type="boolean">false</drop>
+      <look type="script">
+        picture ("lampada.png")
+        muda fonte ("Nada mais que uma lâmpada comum.")
+      </look>
+    </object>
+    <object name="Bob">
+      <inherit name="editor_object" />
+      <inherit name="namedmale" />
+      <take type="boolean">false</take>
+      <prefix>o</prefix>
+      <feature_usegive />
+      <peso type="double">98</peso>
+      <medida>Kg</medida>
+      <look type="script">
+        if (GetBoolean(Bob, "vivo")) {
+          msg ("Bob está sentado, aparentemente se sente melhor,")
+        }
+        else {
+          msg ("Bob está deitado no chão, de uma forma bem estranha.")
+        }
+      </look>
+      <useon type="scriptdictionary">
+        <item key="desfilibrador">
+          reviver bob
+        </item>
+      </useon>
+      <ask type="scriptdictionary">
+        <item key="ataque cardíaco">
+          if (GetBoolean(Bob, "vivo")) {
+            msg ("Bem, um momento, eu estava sentado lá, me sentindo muito feliz comigo mesmo depois de comer meu lanche da tarde - um cheeseburguer, pizza e torta de sorvete, bacon, que eu tinha comido com um copo de café e seis latas de Red Bull - Quando de repente, eu estava com uma dor terrível, e depois tudo ficou calmo. Então você apareceu.\"")
+          }
+          else {
+            msg ("Ele está morto.")
+          }
+        </item>
+      </ask>
+    </object>
+    <exit alias="norte" to="cozinha">
+      <inherit name="northdirection" />
+    </exit>
+    <object name="caixa1">
+      <inherit name="editor_object" />
+      <inherit name="container_closed" />
+      <inherit name="container_lockable" />
+      <inherit name="feminine" />
+      <alias>caixa</alias>
+      <feature_container />
+      <transparent type="boolean">false</transparent>
+      <close />
+      <open />
+      <isopen type="boolean">false</isopen>
+      <canlockopen type="boolean">false</canlockopen>
+      <keycount type="int">1</keycount>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>uma</prefix>
+      <suffix>estranha</suffix>
+      <listchildren />
+      <aberta type="int">0</aberta>
+      <key type="object">chave</key>
+      <onopen type="script">
+        if (caixa1.aberta = 0) {
+          muda fonte ("WOW, era disso que eu precisava.")
+          caixa1.aberta = caixa1.aberta + 1
+        }
+      </onopen>
+      <look type="script">
+        muda fonte ("Hum, que caixa mais tosca. Tem uma fechadura, provavelmente tenho que encontrar a chave disso, caso eu queira abrir.")
+      </look>
+      <object name="desfilibrador">
+        <inherit name="editor_object" />
+        <take />
+        <feature_usegive />
+        <givesingle type="boolean">false</givesingle>
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <prefix>um</prefix>
+        <peso type="double">2</peso>
+        <medida>Kg</medida>
+        <look type="script">
+          picture ("desfibrilador defigard dg 50002.png")
+          muda fonte ("Um desfibrilador pode magicamente reviver uma pessoa.")
+        </look>
+        <use type="script">
+          reviver bob
+        </use>
+      </object>
+    </object>
+  </object>
+  <object name="cozinha">
+    <inherit name="editor_room" />
+    <description type="script">
+      descricao room ("A cozinha fede a morte, tudo aqui parece tão frio. Me lembra cenário de filme de terror.")
+    </description>
+    <object name="caixa">
+      <inherit name="editor_object" />
+      <peso type="double">4.6</peso>
+      <medida>Kg</medida>
+      <gender>esta</gender>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>uma</prefix>
+      <look type="script">
+        picture ("caixa-termica-de-plastico-azul.png")
+        muda fonte ("Uma caixa de tamanho médio, sua cor é azul escuro. Me parece ser uma caixa térmica.")
+      </look>
+    </object>
+    <object name="farinha">
+      <inherit name="editor_object" />
+      <peso type="int">679</peso>
+      <scenery type="boolean">false</scenery>
+      <medida>g</medida>
+      <gender>esta</gender>
+      <comestivel />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>um pouco de </prefix>
+      <look type="script">
+        picture ("flour_PNG5.png")
+        muda fonte ("Uma pequena vasilha com farinha dentro.")
+      </look>
+    </object>
+    <object name="ovos">
+      <inherit name="editor_object" />
+      <peso type="int">500</peso>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>alguns</prefix>
+      <gender>estes</gender>
+      <medida>g</medida>
+      <comestivel />
+      <look type="script">
+        picture ("grande-branco-a-granel-bandeja-30-ovos.png")
+        muda fonte ("Uma caixa de ovos, pesa  " + ovos.peso + " gramas. Digamos que sou muito bom em medir o peso das coisas... Sim sei que isso é um pouco esquisito.")
+      </look>
+    </object>
+    <object name="açúcar">
+      <inherit name="editor_object" />
+      <peso type="double">3</peso>
+      <alias>açucar</alias>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>uma porção de </prefix>
+      <medida>Kg</medida>
+      <alt type="stringlist">
+        <value>acucar</value>
+      </alt>
+      <gender>este</gender>
+      <comestivel />
+      <look type="script">
+        picture ("Sugar-Free-Download-PNG.png")
+        msg ("")
+      </look>
+    </object>
+    <exit alias="sul" to="sala">
+      <inherit name="southdirection" />
+    </exit>
+    <object name="geladeira">
+      <inherit name="editor_object" />
+      <inherit name="container_closed" />
+      <inherit name="feminine" />
+      <feature_container />
+      <listchildren />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>uma</prefix>
+      <scenery type="boolean">false</scenery>
+      <listchildrenprefix>Na geladeira contém</listchildrenprefix>
+      <look type="script">
+        if (geladeira.isopen) {
+          muda fonte ("A geladeira está aberta, suas luzes são coloridas, que esquisito nunca havia visto algo assim. Gostei.")
+        }
+        else {
+          muda fonte ("Uma geladeira comum encostada na ponta da cozinha.")
+        }
+      </look>
+      <object name="leite">
+        <inherit name="editor_object" />
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <prefix>um pacote de</prefix>
+        <comestivel />
+        <look type="script">
+          muda fonte ("Uma caixa de leite líquido, parece delicioso.")
+        </look>
+      </object>
+      <object name="queijo">
+        <inherit name="editor_object" />
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <prefix>um pouco de </prefix>
+        <comestivel />
+        <look type="script">
+          muda fonte ("Wow, há bastante queijo aqui. Ninguém se importaria se eu comesse, né?!")
+        </look>
+      </object>
+      <object name="cerveja">
+        <inherit name="editor_object" />
+        <inherit name="feminine" />
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <prefix>uma garrafa de </prefix>
+        <look type="script">
+          muda fonte ("Uma garrafa de cerveja, nada de extraordinário.")
+        </look>
+      </object>
+    </object>
+    <object name="armário">
+      <inherit name="editor_object" />
+      <inherit name="container_closed" />
+      <feature_container />
+      <listchildren />
+      <listchildrenprefix>O armário está praticamente vazio, contém somente</listchildrenprefix>
+      <hidechildren type="boolean">false</hidechildren>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>um</prefix>
+      <look type="script">
+        if (armário.isopen) {
+          muda fonte ("O armário está aberto, seu interior é feito de madeira maciça.")
+        }
+        else {
+          muda fonte ("Esse armário me lembra de quando eu ia fazer visita a minha falecida vó.")
+        }
+      </look>
+      <takemsg>Não sou forte o suficiente.</takemsg>
+      <object name="lata de feijão">
+        <inherit name="editor_object" />
+        <inherit name="feminine" />
+        <inherit name="openable" />
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <prefix>uma</prefix>
+        <look type="script">
+          muda fonte ("Uma lata de feijão comum, sua cor é verde.")
+        </look>
+        <feature_container />
+        <close type="boolean">false</close>
+        <openscript type="script">
+          if (GetBoolean(lata de feijão, "isopen")) {
+            msg ("Já está aberto.")
+          }
+          else {
+            MoveObject (feijão, cozinha)
+            msg ("Há bastante feijão aqui.")
+          }
+        </openscript>
+        <closescript type="script">
+          msg ("Não tem como, a tampa quebrou.")
+        </closescript>
+      </object>
+      <object name="pacote de arroz">
+        <inherit name="editor_object" />
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <prefix>um</prefix>
+        <look type="script">
+          muda fonte ("Isso não podia faltar né, parece ser daquelas marcas bem baratas.")
+        </look>
+      </object>
+    </object>
+    <object name="chave">
+      <inherit name="editor_object" />
+      <inherit name="feminine" />
+      <take />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>uma</prefix>
+    </object>
+    <object name="janela">
+      <inherit name="editor_object" />
+      <inherit name="openable" />
+      <inherit name="feminine" />
+      <feature_container />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>uma</prefix>
+      <look type="script">
+        muda fonte ("Que janela grande, deve ter custado um rim.")
+      </look>
+      <openscript type="script">
+        HelperOpenObject (janela)
+        if (Contains (cozinha,abelha)) {
+          msg ("A janela é aberta. Nada de mais acontece.")
+        }
+        else {
+          MoveObject (abelha, cozinha)
+          msg ("Você abre a janela e uma abelha voa para a cozinha.")
+        }
+      </openscript>
+      <closescript type="script">
+        msg ("Você fecha a janela.")
+        HelperCloseObject (janela)
+      </closescript>
+    </object>
+    <object name="maçã">
+      <inherit name="editor_object" />
+      <inherit name="feminine" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>uma</prefix>
+      <suffix type="string"></suffix>
+      <comestivel />
+      <look type="script">
+        muda fonte ("Essa maçã parece ser deliciosa.")
+      </look>
+      <takemsg>Acho que seria uma idéia melhor comer essa maçã, estou faminto.</takemsg>
+    </object>
+  </object>
+  <verb>
+    <property>assistir</property>
+    <pattern>assistir</pattern>
+    <defaultexpression>"Você não " + object.article + " pode assistir."</defaultexpression>
+  </verb>
+  <verb>
+    <property>ler</property>
+    <pattern>ler; lê; leia; leia</pattern>
+    <defaultexpression>"Você não " + object.article + " pode ler; lê; leia; leia."</defaultexpression>
+  </verb>
+  <verb>
+    <property>olhar</property>
+    <pattern>olhar</pattern>
+    <defaultexpression>"Você não " + object.article + " pode olhar."</defaultexpression>
+  </verb>
+  <verb>
+    <property>destruir</property>
+    <pattern>destruir; quebrar;</pattern>
+    <defaultexpression>"Você não " + object.article + " pode destruir; quebrar;."</defaultexpression>
+  </verb>
+  <command name="pesar">
+    <pattern>peso #object#; pesar #object#</pattern>
+    <script><![CDATA[
+      if (HasAttribute(object, "medida")) {
+        if (HasAttribute(object, "peso")) {
+          msg ("Pesa <b>" + object.peso +" " + object.medida + "</b>.")
+        }
+      }
+      else {
+        msg ("Você não pode pesar " +object.prefix + " " + object.name + ".")
+      }
+    ]]></script>
+  </command>
+  <command name="comer">
+    <pattern>comer #object#; coma #object#</pattern>
+    <script>
+      if (HasAttribute(object, "comestivel")) {
+        msg ("Voce comeu " + object.prefix + " " + object.name +", que gostoso.")
+        object.peso = 0
+        RemoveObject (object)
+      }
+      else {
+        msg ("Você não pode comer "+ object.prefix + " " + object.name + ". O que você tem na cabeça?")
+      }
+    </script>
+  </command>
+  <command name="falar">
+    <pattern>dizer #text_talk# para #object_one#; falar #text_talk# para #object_one#;  diga #text_talk# para #object_one#; 
+    dizer #text_talk# pra #object_one#; falar #text_talk# pra #object_one#; diga #text_talk# pra #object_one#;
+    dizer #text_talk# pro #object_one#; falar #text_talk# pro #object_one#; diga #text_talk# pro #object_one#;
+    dizer #text_talk# para os #object_one#; falar #text_talk# para os #object_one#; diga #text_talk# para os #object_one#;
+    dizer #text_talk# para as #object_one#; falar #text_talk# para as #object_one#; diga #text_talk# para as #object_one#;
+                </pattern>
+    <unresolved>Say that to who?</unresolved>
+    <script>
+      switch (object_one) {
+        case (Bob) {
+          msg ("Você disse " + text_talk + ".")
+          msg ("Bob sorri de volta a você.")
+        }
+        default {
+          msg ("Voce disse " + text_talk + ", mas " + object_one.name + " não diz nada, possivelmente... er... você sabe, por que não é capaz de falar.")
+        }
+      }
+    </script>
+  </command>
+  <object name="limbo">
+    <inherit name="editor_room" />
+    <object name="abelha">
+      <inherit name="editor_object" />
+      <look type="script">
+        muda fonte ("Uma abelha de cor vibrante. Que barulho irritante.")
+      </look>
+    </object>
+    <object name="feijão">
+      <inherit name="editor_object" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>bastante </prefix>
+      <suffix>preto</suffix>
+      <peso type="double">500</peso>
+      <medida>g</medida>
+    </object>
+  </object>
+  <function name="reviver bob">
+    if (game.pov.parent = sala) {
+      if (GetBoolean(Bob, "vivo")) {
+        msg ("Você já o reviveu.")
+      }
+      else {
+        msg ("Inacreditavelmente Bob é revivido, o desfilibrador funcionou magicamente, Bob diz que se sente \"meio distorcido\".")
+      }
+      SetObjectFlagOn (Bob, "vivo")
+    }
+    if (not game.pov.parent = sala) {
+      msg ("Errrr.. Que eu saiba não estou morto, não tenho por que usar em mim mesmo.")
+    }
+  </function>
+  <function name="muda fonte" parameters="texto">
+    SetForegroundColour ("Coral")
+    SetFontSize (13)
+    SetFontName ("'Trebuchet MS', Helvetica, sans-serif")
+    SetFontSize (13)
+    PrintCentered (texto)
+    SetForegroundColour ("Black")
+    SetFontSize (12)
+    SetFontName ("Georgia, serif")
+  </function>
+  <function name="descricao room" parameters="texto">
+    SetFontName ("'Comic Sans MS', cursive, sans-serif")
+    SetFontSize (16)
+    PrintCentered (texto)
+    SetFontName ("Georgia, serif")
+    SetFontSize (12)
+  </function>
+</asl>
